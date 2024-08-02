@@ -1,5 +1,5 @@
 //taking these data from products.js file in data folder
-
+import {cart} from '../data/cart.js';
 let productsHTML = "";
 
 products.forEach((product) => {
