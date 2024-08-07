@@ -5,7 +5,29 @@ import { loadCart } from "../data/cart.js";
 //import '../data/cart-class.js';
 // import '../data/backend-practice.js';
 
+async function loadPage() {
+  // console.log('load page1');
+  await loadProductsFetch();
 
+  const value = await new Promise((resolve) => {
+    loadCart(() => {
+      resolve('value2');
+    });
+  })/*.then((value) => {
+      // instead of using this we can store the value in a variable as above as awiat retutrns the the value of resolve('value2'); 
+  })*/
+  
+  renderOrderSummary();
+  renderPaymentSummary();
+
+  // return 'value1';
+}
+loadPage();/*.then((value) => {
+  console.log('next step');
+  // console.log(value);
+});*/
+
+/*
 Promise.all([
   loadProductsFetch(),
   new Promise((resolve) => {
@@ -19,7 +41,7 @@ Promise.all([
   renderOrderSummary();
   renderPaymentSummary();
 });
-
+*/
 
 /*
 Promise.all([
