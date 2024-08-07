@@ -7,25 +7,33 @@ import { loadCart } from "../data/cart.js";
 
 async function loadPage() {
   // console.log('load page1');
-  await loadProductsFetch();
+  try {
+    // throw 'error1'; manually creating error
 
-  const value = await new Promise((resolve) => {
-    loadCart(() => {
-      resolve('value2');
-    });
-  })/*.then((value) => {
-      // instead of using this we can store the value in a variable as above as awiat retutrns the the value of resolve('value2'); 
-  })*/
-  
+    await loadProductsFetch();
+
+    const value = await new Promise((resolve, reject) => {
+      // throw 'error2';
+      loadCart(() => {
+        // reject('error3');
+        resolve("value2");
+      });
+    }); /*.then((value) => {
+          // instead of using this we can store the value in a variable as above as awiat retutrns the the value of resolve('value2'); 
+      })*/
+
+  } catch (error) {
+    console.log("unexpected error. please try again later.");
+  }
   renderOrderSummary();
   renderPaymentSummary();
 
   // return 'value1';
 }
-loadPage();/*.then((value) => {
-  console.log('next step');
-  // console.log(value);
-});*/
+  loadPage(); /*.then((value) => {
+      console.log('next step');
+      // console.log(value);
+    });*/
 
 /*
 Promise.all([
